@@ -8,20 +8,14 @@ using ImageServiceWeb.Models;
 
 namespace ImageServiceWeb.Controllers
 {
+
     public class HomeController : Controller
     {
+
+
         public ActionResult Index()
         {
-            bool isRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
-
-            if (isRunning)
-            {
-                ViewBag.Message = "Image service is running";
-            } 
-            else
-            {
-                ViewBag.Message = "Image service is closed";
-            }
+            ViewBag.ServiceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
 
             return View();
         }
