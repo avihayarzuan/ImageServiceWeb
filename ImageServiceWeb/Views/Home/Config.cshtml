@@ -1,7 +1,13 @@
-﻿
+﻿@model ImageServiceWeb.Models.ConfigModel
+
+
+
 @{
     ViewBag.Title = "Config";
 }
 
 <h2>Config here</h2>
+<h2>
+    @Html.DisplayFor(model => model.Output)
+</h2>
 

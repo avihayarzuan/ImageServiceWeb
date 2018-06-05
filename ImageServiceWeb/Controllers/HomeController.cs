@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.ServiceProcess;
-
+using ImageServiceWeb.Models;
 
 namespace ImageServiceWeb.Controllers
 {
@@ -30,7 +30,7 @@ namespace ImageServiceWeb.Controllers
         {
             ViewBag.Message = "Your config page.";
 
-            return View();
+            return View(new ConfigModel());
         }
 
         public ActionResult Photos()

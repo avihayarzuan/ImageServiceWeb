@@ -31,6 +31,10 @@ namespace ImageServiceWeb.Communication
             { this.isConnected = value; }
         }
 
+        public event EventHandler<MessageEventArgs> LoggerCommandRecievd;
+        public event EventHandler<MessageEventArgs> SettingsConfigRecieved;
+        public event EventHandler<MessageEventArgs> SettingsCloseHandlerRecieved;
+
         public static Client Instance
         {
             get
@@ -72,16 +76,44 @@ namespace ImageServiceWeb.Communication
         /// Sending comands to our server
         /// </summary>
         /// <param name="data"> String of the clients command</param>
-        public string SendData(string data)
+        public void SendData(string data)
         {
             if (!IsConnected)
             {
-                return "Not Connected";
+                return;
             }
+            this.Connect();
             writer.Write(data);
             string result = reader.ReadString();
+            ParseAndSend(result);
             client.Close();
-            return result;
         }
+
+
+        /// <summary>
+        /// Parsing each server message and notyfing the appropriate class
+        /// </summary>
+        /// <param name="msg"></param>
+        public void ParseAndSend(string msg)
+        {
+            // Parsing our jobjects command enum
+            JObject obj = JObject.Parse(msg);
+            int.TryParse(obj["CommandEnum"].ToString(), out int command);
+            MessageEventArgs e = new MessageEventArgs(command, msg);
+            // Sending the server message to the right tab via event
+            if (command == (int)Infrastructure.Enums.CommandEnum.GetConfigCommand)
+            {
+                SettingsConfigRecieved?.Invoke(this, e);
+            }
+            else if (command == (int)Infrastructure.Enums.CommandEnum.LogCommand)
+            {
+                LoggerCommandRecievd?.Invoke(this, e);
+            }
+            else if (command == (int)Infrastructure.Enums.CommandEnum.CloseCommand)
+            {
+                SettingsCloseHandlerRecieved?.Invoke(this, e);
+            }
+        }
+
     }
 }
