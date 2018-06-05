@@ -3,7 +3,14 @@
 }
 
 <div class="jumbotron">
-    <h1>Image Server</h1>
-    <h2>@ViewBag.Message</h2>
+    <h1>Image Service</h1>
+    @if (ViewBag.ServiceRunning)
+    {
+        <span style="font-weight: bold; font-size: large" class="badge badge-success">Active</span>
+    }
+    else
+    {
+        <span style="font-weight: bold; font-size: large" class="badge badge-warning">Inactive</span>
+    }
     <p class="lead">We cant promise we'll try but we'll try to try.</p>
 </div>
