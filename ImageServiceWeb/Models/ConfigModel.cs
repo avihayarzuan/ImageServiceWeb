@@ -3,6 +3,7 @@ using ImageServiceWeb.Infrastructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -22,6 +23,12 @@ namespace ImageServiceWeb.Models
             this.client.SettingsConfigRecieved += SettingsConfigRecieved;
             this.client.SettingsCloseHandlerRecieved += HandlerRemoveRecived;
             this.GetConfig();
+        }
+
+        public int GetNumPhotos()
+        {
+            int fileCount = Directory.GetFiles(Output, "*.*", SearchOption.AllDirectories).Length;
+            return (fileCount/2);
         }
 
         /// <summary>

@@ -3,14 +3,48 @@
 }
 
 <div class="jumbotron">
-    <h1>Image Service</h1>
-    @if (ViewBag.ServiceRunning)
-    {
-        <span style="font-weight: bold; font-size: large" class="badge badge-success">Active</span>
-    }
-    else
-    {
-        <span style="font-weight: bold; font-size: large" class="badge badge-warning">Inactive</span>
-    }
-    <p class="lead">We cant promise we'll try but we'll try to try.</p>
+    <h1>Welcom To Image Service!</h1>
+    <h2>
+        Service Status
+        @if (ViewBag.ServiceRunning)
+        {
+            <span style="font-weight: bold; font-size: x-large" class="badge badge-success">Running</span>
+            <h3>
+                Image Service containts
+                <span style="font-weight: bold; font-size: x-large" class="badge badge-info">@ViewBag.NumPhotos</span>
+                photos
+            </h3>
+
+        }
+        else
+        {
+            <span style="font-weight: bold; font-size: x-large" class="badge badge-danger">Inactive</span>
+        }
+    </h2>
 </div>
+
+<table class="table-condensed">
+    <h4>
+        <p><u><b>Students:</b></u></p>
+    </h4>
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Avihay</td>
+            <td>Arzuan</td>
+            <td>1234567</td>
+        </tr>
+        <tr>
+            <td>Uri</td>
+            <td>Ronen</td>
+            <td>1234567</td>
+        </tr>
+        <tr>
+    </tbody>
+</table>

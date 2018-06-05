@@ -11,11 +11,14 @@ namespace ImageServiceWeb.Controllers
 
     public class HomeController : Controller
     {
-
+        ConfigModel configModel = new ConfigModel();
 
         public ActionResult Index()
         {
-            ViewBag.ServiceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
+            if (ViewBag.ServiceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running))
+            {
+                ViewBag.NumPhotos = configModel.GetNumPhotos(); 
+            }
 
             return View();
         }
@@ -24,7 +27,7 @@ namespace ImageServiceWeb.Controllers
         {
             ViewBag.Message = "Your config page.";
 
-            return View(new ConfigModel());
+            return View(configModel);
         }
 
         public ActionResult Photos()
