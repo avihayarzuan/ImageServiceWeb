@@ -5,9 +5,31 @@
 @{
     ViewBag.Title = "Config";
 }
+<style>
+table#t01 {
+    width: 100%;
+    font-size: 150%;
+}
 
-<h2>Config here</h2>
-<h2>
-    @Html.DisplayFor(model => model.Output)
-</h2>
+</style>
 
+<h2>Config</h2>
+<table id="t01">
+    <tr>
+        <td><strong> Output Directory: </strong></td>
+        <td>@Html.DisplayFor(model => model.Output)</td>
+    </tr>
+    <tr>
+        <td><strong> Source Name: </strong></td>
+        <td>@Html.DisplayFor(model => model.SourceName)</td>
+    </tr>
+    <tr>
+        <td><strong> Log Name: </strong></td>
+        <td>@Html.DisplayFor(model => model.LogName)</td>
+    </tr>
+    <tr>
+        <td><strong> Thumbnail Size: </strong></td>
+        <td>@Html.DisplayFor(model => model.ThumbnailSize)</td>
+    </tr>
+
+</table>
