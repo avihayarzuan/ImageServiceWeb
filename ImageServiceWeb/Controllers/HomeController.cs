@@ -43,5 +43,19 @@ namespace ImageServiceWeb.Controllers
 
             return View();
         }
+
+        public ActionResult DeleteConfirm(string dir)
+        {
+            ViewBag.Message = dir;
+            return View();
+        }
+
+        public ActionResult Remove(string dir)
+        {
+            ViewBag.Message = "dir";
+            ConfigModel CconfigModel = new ConfigModel();
+            CconfigModel.RemoveHandler(dir);
+            return View(CconfigModel);
+        }
     }
 }
