@@ -13,7 +13,9 @@ namespace ImageServiceWeb.Controllers
     {
         static ConfigModel configModel = new ConfigModel();
         static LogModel logModel = new LogModel();
+        static StudentsModel studentsModel = new StudentsModel();
         bool serviceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
+
         public ActionResult Index()
         {
             ViewBag.ServiceRunning = false;
@@ -23,24 +25,16 @@ namespace ImageServiceWeb.Controllers
                 //ConfigModel configModel = new ConfigModel();
                 ViewBag.NumPhotos = configModel.GetNumPhotos();
             }
-
-            return View();
+            studentsModel.getStudents();
+            return View(studentsModel);
         }
 
         public ActionResult Config()
         {
-            //bool a = new ServiceController("ImageService").Status == ServiceControllerStatus.Running;
             ViewBag.ServiceRunning = serviceRunning;
-            //if (serviceRunning)
-            //{
             ViewBag.Message = "Your config page.";
-            //configModel.GetConfig();
+            configModel.Handlers.Clear();
             return View(configModel);
-            //}
-            //else
-            //{
-            //    return View(new ConfigModel());
-            //}
         }
 
         public ActionResult Photos()
@@ -69,10 +63,8 @@ namespace ImageServiceWeb.Controllers
             return View();
         }
 
-        public ActionResult Remove(string dir)
+        public ActionResult RemoveDir(string dir)
         {
-            //ViewBag.Message = "dir";
-            //ConfigModel configModel = new ConfigModel();
             configModel.RemoveHandler(dir);
             return View(configModel);
         }
