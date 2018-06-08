@@ -11,8 +11,8 @@ namespace ImageServiceWeb.Controllers
 
     public class HomeController : Controller
     {
-        //ConfigModel configModel = new ConfigModel();
-        LogModel logModel = new LogModel();
+        static ConfigModel configModel = new ConfigModel();
+        static LogModel logModel = new LogModel();
         bool serviceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
         public ActionResult Index()
         {
@@ -20,7 +20,7 @@ namespace ImageServiceWeb.Controllers
             if (serviceRunning)
             {
                 ViewBag.ServiceRunning = serviceRunning;
-                ConfigModel configModel = new ConfigModel();
+                //ConfigModel configModel = new ConfigModel();
                 ViewBag.NumPhotos = configModel.GetNumPhotos();
             }
 
@@ -33,8 +33,9 @@ namespace ImageServiceWeb.Controllers
             ViewBag.ServiceRunning = serviceRunning;
             //if (serviceRunning)
             //{
-                ViewBag.Message = "Your config page.";
-                return View(new ConfigModel());
+            ViewBag.Message = "Your config page.";
+            //configModel.GetConfig();
+            return View(configModel);
             //}
             //else
             //{
@@ -54,7 +55,7 @@ namespace ImageServiceWeb.Controllers
             ViewBag.ServiceRunning = serviceRunning;
 
             ViewBag.Message = "Your logs page.";
-
+            logModel.GetLog();
             return View(logModel);
         }
 
@@ -71,9 +72,9 @@ namespace ImageServiceWeb.Controllers
         public ActionResult Remove(string dir)
         {
             //ViewBag.Message = "dir";
-            ConfigModel configModel = new ConfigModel();
+            //ConfigModel configModel = new ConfigModel();
             configModel.RemoveHandler(dir);
-            return View(new ConfigModel());
+            return View(configModel);
         }
     }
 }

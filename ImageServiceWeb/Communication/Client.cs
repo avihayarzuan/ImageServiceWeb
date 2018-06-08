@@ -76,17 +76,26 @@ namespace ImageServiceWeb.Communication
         /// Sending comands to our server
         /// </summary>
         /// <param name="data"> String of the clients command</param>
-        public void SendData(string data)
+        public string SendData(string data)
         {
+            string answer = "";
             if (!IsConnected)
             {
-                return;
+                return "notConnected";
             }
             this.Connect();
-            writer.Write(data);
-            string result = reader.ReadString();
-            ParseAndSend(result);
+            try
+            {
+                writer.Write(data);
+                string result = reader.ReadString();
+                ParseAndSend(result);
+            }
+            catch
+            {
+                answer = "failed";
+            }
             client.Close();
+            return answer;
         }
 
 
