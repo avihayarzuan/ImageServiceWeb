@@ -1,10 +1,10 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "DeleteConfirm";
 }
 
+
 <h2>DeleteConfirm</h2>
-<h4>Are you sure you want to delete <strong>@ViewBag.Message </strong> Directory? </h4>
+<h4>Are you sure you want to delete <strong>@ViewBag.MessageOrigin </strong> Directory? </h4>
 <button type="button" id="confirm" class="btn btn-success" data-a="cc">Yes</button>
 <input type="button" value="Cancel" onclick='goBack()' class="btn btn-danger"/>
 
@@ -14,20 +14,11 @@
         document.location='Config'
     }
 
-
-    //function remove() {
-
-    //    document.location='Config'
-    //}
-
     $("#confirm").click(function () {
-        var input = '@ViewBag.Message';
+        var input = '@ViewBag.MessageSlashed';
 
-        $.get("Home/Remove", { dir: input }, function (data) { });
-        document.location = 'Config'
-        //alert(input);
-        @*$.post("@Url.Action("GetEmployee")", input, function (data) {
-            $("#lstProducts").append("<li>" + data.FirstName + " " + data.LastName + " : $" + data.Salary + "</li>");
-        }, "json");*@
+        $.get("/Home/Remove", { dir: input }, function (data) { });
+        //wait here if not updated
+        document.location = 'Config';
     });
 </script>

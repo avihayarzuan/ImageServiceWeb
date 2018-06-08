@@ -51,14 +51,9 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item)</td>
                     <td>@Html.ActionLink("Delete", "DeleteConfirm", "Home", new { dir = item},null)</td>
-                    @*<td><button type="button" data-item="@item"> Delete</button></td>*@
                 </tr>
 
             }
         }
     </tbody>
 </table>
-
-@*@Html.ActionLink("Delete", "Delete", new { id = item.ID })
-    <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Delete</button></td>
-*@

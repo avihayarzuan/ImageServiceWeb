@@ -11,13 +11,14 @@ namespace ImageServiceWeb.Controllers
 
     public class HomeController : Controller
     {
-        ConfigModel configModel = new ConfigModel();
+        //ConfigModel configModel = new ConfigModel();
 
         public ActionResult Index()
         {
             if (ViewBag.ServiceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running))
             {
-                ViewBag.NumPhotos = configModel.GetNumPhotos(); 
+                ConfigModel configModel = new ConfigModel();
+                ViewBag.NumPhotos = configModel.GetNumPhotos();
             }
 
             return View();
@@ -27,7 +28,7 @@ namespace ImageServiceWeb.Controllers
         {
             ViewBag.Message = "Your config page.";
 
-            return View(configModel);
+            return View(new ConfigModel());
         }
 
         public ActionResult Photos()
@@ -46,16 +47,20 @@ namespace ImageServiceWeb.Controllers
 
         public ActionResult DeleteConfirm(string dir)
         {
-            ViewBag.Message = dir;
+            if (dir != null)
+            {
+                ViewBag.MessageOrigin = dir;
+                ViewBag.MessageSlashed = dir.Replace("\\", "\\\\");
+            }
             return View();
         }
 
         public ActionResult Remove(string dir)
         {
-            ViewBag.Message = "dir";
-            ConfigModel CconfigModel = new ConfigModel();
-            CconfigModel.RemoveHandler(dir);
-            return View(CconfigModel);
+            //ViewBag.Message = "dir";
+            ConfigModel configModel = new ConfigModel();
+            configModel.RemoveHandler(dir);
+            return View(new ConfigModel());
         }
     }
 }

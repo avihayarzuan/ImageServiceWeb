@@ -69,7 +69,6 @@ namespace ImageServiceWeb.Models
             if (this.Handlers.Contains(path))
             {
                 Handlers.Remove(path);
-                //NotifyPropertyChanged("Handlers");
             }
 
         }
@@ -90,7 +89,7 @@ namespace ImageServiceWeb.Models
         public void RemoveHandler(string handlerPath)
         {
             int msg = (int)Infrastructure.Enums.CommandEnum.CloseCommand;
-            this.client.SendData(msg.ToString() + " " + this.ChosenHandler);
+            this.client.SendData(msg.ToString() + " " + handlerPath);
 
         }
 
@@ -105,10 +104,6 @@ namespace ImageServiceWeb.Models
         {
             get { return m_handlers; }
             set { }
-            //{
-            //    m_handlers = value;
-            //    NotifyPropertyChanged("Handlers");
-            //}
         }
 
         private string m_chosenHandler;
@@ -118,7 +113,6 @@ namespace ImageServiceWeb.Models
             set
             {
                 m_chosenHandler = value;
-                //NotifyPropertyChanged("ChosenHandler");
             }
         }
 
@@ -129,7 +123,6 @@ namespace ImageServiceWeb.Models
             set 
             {
                 m_output = value;
-                //NotifyPropertyChanged("Output");
             }
         }
 
@@ -140,7 +133,6 @@ namespace ImageServiceWeb.Models
             set
             {
                 m_sourceName = value;
-                //NotifyPropertyChanged("SourceName");
             }
         }
 
@@ -151,7 +143,6 @@ namespace ImageServiceWeb.Models
             set
             {
                 m_logName = value;
-                //NotifyPropertyChanged("LogName");
             }
         }
 
@@ -162,7 +153,6 @@ namespace ImageServiceWeb.Models
             set
             {
                 m_thumbnailSize = value;
-                //NotifyPropertyChanged("ThumbnailSize");
             }
         }
     }
