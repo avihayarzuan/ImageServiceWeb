@@ -31,7 +31,8 @@ namespace ImageServiceWeb.Controllers
         {
             ViewBag.ServiceRunning = serviceRunning;
             ViewBag.Message = "Your config page.";
-            configModel.Handlers.Clear();
+            //configModel.Handlers.Clear();
+            configModel.GetConfig();
             return View(configModel);
         }
 
@@ -61,7 +62,7 @@ namespace ImageServiceWeb.Controllers
             return View();
         }
 
-        public ActionResult RemoveDir(string dir)
+        public ActionResult Remove(string dir)
         {
             configModel.RemoveHandler(dir);
             return View(configModel);

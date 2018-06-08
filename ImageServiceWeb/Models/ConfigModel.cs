@@ -38,6 +38,7 @@ namespace ImageServiceWeb.Models
         /// <param name="msg"> The message recived from server</param>
         public void SettingsConfigRecieved(object sender, MessageEventArgs msg)
         {
+            Handlers.Clear();
             // Parsing our message
             string message = msg.Message;
             JObject obj = JObject.Parse(message);
@@ -90,7 +91,6 @@ namespace ImageServiceWeb.Models
         {
             int msg = (int)Infrastructure.Enums.CommandEnum.CloseCommand;
             this.client.SendData(msg.ToString() + " " + handlerPath);
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
