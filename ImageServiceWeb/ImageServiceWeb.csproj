@@ -150,6 +150,7 @@
     <Compile Include="Infrastructure\LogMessage.cs" />
     <Compile Include="Infrastructure\MessageEventArgs.cs" />
     <Compile Include="Models\ConfigModel.cs" />
+    <Compile Include="Models\LogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

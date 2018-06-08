@@ -1,5 +1,68 @@
-﻿@{
+﻿@model ImageServiceWeb.Models.LogModel
+
+@{
     ViewBag.Title = "Logs";
 }
-<h1>@ViewBag.Title.</h1>
-<h2>@ViewBag.Message</h2>
+<h1>Logs</h1>
+
+<h2>Logs</h2>
+
+<style>
+    input[type=checkbox] {
+        transform: scale(3.5);
+    }
+</style>
+
+<script>
+    function SortTable(option) {
+        var table = document.getElementById("logTable");
+        var tr = table.getElementsByTagName("tr");
+        var allOrNone = "none";
+        var td, i;
+
+        if ($(option).is(':checked')) {
+            allOrNone = "";
+        }
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+
+            if (td) {
+                if (td.id === option.value) {
+                    tr[i].style.display = allOrNone;
+                }
+            }
+        }
+    }
+</script>
+
+
+<div style="font-size: 20px; text-align: center;">
+    <input value="INFO" type="checkbox" checked="checked" id="INFO" onchange="SortTable(this)">&emsp;Info &emsp;&emsp;
+    <input value="WARNING" type="checkbox" checked="checked" id="WARNING" onchange="SortTable(this)">&emsp;Warning &emsp;&emsp;
+    <input value="FAIL" type="checkbox" checked="checked" id="FAIL" onchange="SortTable(this)">&emsp;Error
+</div>
+
+
+<table class="table" id="logTable">
+    <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model.LogList)
+        {
+            <tr>
+                <td id=@entry.Type>
+                    @Html.DisplayFor(m => entry.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => entry.Message)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
