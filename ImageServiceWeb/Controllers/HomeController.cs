@@ -12,6 +12,7 @@ namespace ImageServiceWeb.Controllers
     public class HomeController : Controller
     {
         ConfigModel configModel = new ConfigModel();
+        LogModel logModel = new LogModel();
 
         public ActionResult Index()
         {
@@ -41,7 +42,7 @@ namespace ImageServiceWeb.Controllers
         {
             ViewBag.Message = "Your logs page.";
 
-            return View();
+            return View(logModel);
         }
 
         public ActionResult DeleteConfirm(string dir)
