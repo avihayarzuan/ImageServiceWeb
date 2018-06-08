@@ -91,7 +91,6 @@ namespace ImageServiceWeb.Models
         {
             int msg = (int)Infrastructure.Enums.CommandEnum.CloseCommand;
             this.client.SendData(msg.ToString() + " " + handlerPath);
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
