@@ -13,18 +13,18 @@ namespace ImageServiceWeb.Controllers
     {
         static ConfigModel configModel = new ConfigModel();
         static LogModel logModel = new LogModel();
+        static StudentsModel studentsModel = new StudentsModel();
         bool serviceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
+
         public ActionResult Index()
         {
-            ViewBag.ServiceRunning = false;
+            ViewBag.ServiceRunning = serviceRunning;
             if (serviceRunning)
             {
-                ViewBag.ServiceRunning = serviceRunning;
-                //ConfigModel configModel = new ConfigModel();
                 ViewBag.NumPhotos = configModel.GetNumPhotos();
             }
-
-            return View();
+            studentsModel.getStudents();
+            return View(studentsModel);
         }
 
         public ActionResult Config()
