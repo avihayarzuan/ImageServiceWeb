@@ -7,5 +7,7 @@ namespace ImageServiceWeb.Models
 {
     public class PhotoModel
     {
+        public string outputDir;
+
     }
 }
