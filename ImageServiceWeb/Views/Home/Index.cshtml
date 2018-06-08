@@ -1,4 +1,7 @@
-﻿@{
+﻿@model ImageServiceWeb.Models.StudentsModel
+
+
+@{
     ViewBag.Title = "Index";
 }
 
@@ -23,28 +26,21 @@
     </h2>
 </div>
 
+
+<p><u><b>Students:</b></u></p>
 <table class="table-condensed">
-    <h4>
-        <p><u><b>Students:</b></u></p>
-    </h4>
     <thead>
         <tr>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
-            <th scope="col">Id</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Avihay</td>
-            <td>Arzuan</td>
-            <td>1234567</td>
-        </tr>
-        <tr>
-            <td>Uri</td>
-            <td>Ronen</td>
-            <td>1234567</td>
-        </tr>
-        <tr>
-    </tbody>
-</table>
+            <th scope="col">ID</th>
+            @foreach (var student in Model.StudentList)
+            {
+            <tr>
+                <td>@Html.DisplayName(student.firstName.ToString())</td>
+                <td>@Html.DisplayName(student.lastName.ToString())</td>
+                <td>@Html.DisplayName(student.id.ToString())</td>
+            </tr>
+        }
+        </thead>
+    </table>
