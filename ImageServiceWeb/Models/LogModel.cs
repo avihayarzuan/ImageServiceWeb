@@ -23,7 +23,6 @@ namespace ImageServiceWeb.Models
             this.client = Client.Instance;
             this.logList = new List<LogMessage>();
             this.client.LoggerCommandRecievd += LogRecieved;
-            this.GetLog();
         }
 
         /// <summary>
@@ -34,6 +33,7 @@ namespace ImageServiceWeb.Models
         /// <param name="msg"></param>
         public void LogRecieved(object sender, MessageEventArgs msg)
         {
+            logList.Clear();
             string log = msg.Message;
             JObject obj = JObject.Parse(log);
             if (obj["firstTime"].ToString().Equals("true"))

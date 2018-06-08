@@ -18,6 +18,7 @@ namespace ImageServiceWeb.Models
 
         public void getStudents()
         {
+            studentList.Clear();
             StreamReader file = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/App_Data/StudentsInfo.txt"));
             string line;
             while ((line = file.ReadLine()) != null)

@@ -18,11 +18,9 @@ namespace ImageServiceWeb.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.ServiceRunning = false;
+            ViewBag.ServiceRunning = serviceRunning;
             if (serviceRunning)
             {
-                ViewBag.ServiceRunning = serviceRunning;
-                //ConfigModel configModel = new ConfigModel();
                 ViewBag.NumPhotos = configModel.GetNumPhotos();
             }
             studentsModel.getStudents();
