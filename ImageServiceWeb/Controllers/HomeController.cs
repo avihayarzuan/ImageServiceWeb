@@ -12,11 +12,14 @@ namespace ImageServiceWeb.Controllers
     public class HomeController : Controller
     {
         //ConfigModel configModel = new ConfigModel();
-
+        LogModel logModel = new LogModel();
+        bool serviceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
         public ActionResult Index()
         {
-            if (ViewBag.ServiceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running))
+            ViewBag.ServiceRunning = false;
+            if (serviceRunning)
             {
+                ViewBag.ServiceRunning = serviceRunning;
                 ConfigModel configModel = new ConfigModel();
                 ViewBag.NumPhotos = configModel.GetNumPhotos();
             }
@@ -26,9 +29,17 @@ namespace ImageServiceWeb.Controllers
 
         public ActionResult Config()
         {
-            ViewBag.Message = "Your config page.";
-
-            return View(new ConfigModel());
+            //bool a = new ServiceController("ImageService").Status == ServiceControllerStatus.Running;
+            ViewBag.ServiceRunning = serviceRunning;
+            //if (serviceRunning)
+            //{
+                ViewBag.Message = "Your config page.";
+                return View(new ConfigModel());
+            //}
+            //else
+            //{
+            //    return View(new ConfigModel());
+            //}
         }
 
         public ActionResult Photos()
@@ -40,9 +51,11 @@ namespace ImageServiceWeb.Controllers
 
         public ActionResult Logs()
         {
+            ViewBag.ServiceRunning = serviceRunning;
+
             ViewBag.Message = "Your logs page.";
 
-            return View();
+            return View(logModel);
         }
 
         public ActionResult DeleteConfirm(string dir)

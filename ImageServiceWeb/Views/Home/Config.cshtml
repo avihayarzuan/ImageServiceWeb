@@ -12,7 +12,17 @@
     }
 </style>
 
-<h2>Config</h2>
+<h2>Setting</h2>
+@if (!ViewBag.ServiceRunning)
+{
+    <h3>Service Status:</h3>
+    <span style="font-weight: bold; font-size: x-large" class="badge badge-danger">Inactive</span>
+    <h4>Cannot load Settings</h4>
+}
+else
+{
+
+
 <table id="t01">
     <tr>
         <td><strong> Output Directory: </strong></td>
@@ -50,10 +60,11 @@
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item)</td>
-                    <td>@Html.ActionLink("Delete", "DeleteConfirm", "Home", new { dir = item},null)</td>
+                    <td>@Html.ActionLink("Delete", "DeleteConfirm", "Home", new { dir = item }, null)</td>
                 </tr>
 
             }
         }
     </tbody>
 </table>
+}
