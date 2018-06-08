@@ -149,6 +149,7 @@
     <Compile Include="Infrastructure\Logging\MessageTypeEnum.cs" />
     <Compile Include="Infrastructure\LogMessage.cs" />
     <Compile Include="Infrastructure\MessageEventArgs.cs" />
+    <Compile Include="Infrastructure\PhotoInfo.cs" />
     <Compile Include="Infrastructure\StudentInfo.cs" />
     <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Models\LogModel.cs" />

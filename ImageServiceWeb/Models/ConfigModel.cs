@@ -38,6 +38,7 @@ namespace ImageServiceWeb.Models
         /// <param name="msg"> The message recived from server</param>
         public void SettingsConfigRecieved(object sender, MessageEventArgs msg)
         {
+            Handlers.Clear();
             // Parsing our message
             string message = msg.Message;
             JObject obj = JObject.Parse(message);
@@ -66,10 +67,10 @@ namespace ImageServiceWeb.Models
             JObject msg = JObject.Parse(e.Message);
             string path = msg["Directory"].ToString();
             // Checking if the path is indeed on the list and removing it
-            if (this.Handlers.Contains(path))
-            {
-                Handlers.Remove(path);
-            }
+            //if (this.Handlers.Contains(path))
+            //{
+            //    Handlers.Remove(path);
+            //}
 
         }
 
