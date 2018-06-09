@@ -23,7 +23,6 @@
         var input = '@ViewBag.MessageSlashed';
 
         $.get("/Home/Remove", { dir: input }, function (data) { });
-        //wait here if not updated
         document.location = 'Config';
     });
 </script>

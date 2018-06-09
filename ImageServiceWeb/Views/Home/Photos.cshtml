@@ -13,25 +13,26 @@
     </style>
 </head>
 
-    <div class="container" id="tourpackages-carousel">
+<div class="container" id="tourpackages-carousel">
 
-        <div class="row">
-            @foreach (var photo in Model.PhotoList)
-            {
-                <div class="col-xs-18 col-sm-6 col-md-3">
+    <div class="row">
+        @foreach (var photo in Model.PhotoList)
+        {
+            <div class="col-xs-18 col-sm-6 col-md-3">
 
-                    <div class="thumbnail">
-                        <img src="@photo.path" alt="" class="circular-image" width="200" height="150">
-                        <div class="caption">
-                            <h4>@photo.name</h4>
-                            <p>@photo.year/@photo.month</p>
-                            <p>
-                                <a href="@Url.Action("PhotosViewer", new { fullUrl = photo.path })" id="btnView" class="btn btn-info btn-xs" role="button">View</a>
-                                <a href="@Url.Action("PhotosDelete", new { fullUrl = photo.path })" id="btnDelete" class="btn btn-danger btn-xs" role="button">Delete</a>
-                            </p>
-                        </div>
+                <div class="thumbnail">
+                    <img src="@photo.path" alt="" class="circular-image" width="200" height="150">
+                    <div class="caption">
+                        <h4>@photo.name</h4>
+                        <p>@photo.year/@photo.month</p>
+                        <p>
+                            <a href="@Url.Action("PhotosViewer", new { path = photo.path, year=photo.year, month = photo.month, name= photo.name})" id="btnView" class="btn btn-info btn-xs" role="button">View</a>
+                            <a href="@Url.Action("DeletePhotoConfirm", new { photo = photo.path })" id="btnDelete" class="btn btn-danger btn-xs" role="button">Delete</a>
+                        </p>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
+</div>
+

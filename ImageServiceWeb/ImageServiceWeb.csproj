@@ -197,6 +197,7 @@
     <Content Include="Views\Home\Config.cshtml" />
     <Content Include="Views\Home\DeleteConfirm.cshtml" />
     <Content Include="Views\Home\DeletePhotoConfirm.cshtml" />
+    <Content Include="Views\Home\PhotosViewer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

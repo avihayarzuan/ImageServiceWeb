@@ -4,8 +4,10 @@
 
 
 <h2>DeletePhotoConfirm</h2>
-<h4>Are you sure you want to delete <strong>@ViewBag.MessageOrigin </strong> Photo? </h4>
-<button type="button" id="confirm" class="btn btn-success" data-a="cc">Yes</button>
+<h4>Are you sure you want to delete <strong>@ViewBag.PhotoNameOrigin </strong> photo? </h4>
+<img src="@ViewBag.PhotoNameOrigin" alt="" class="circular-image" width="200" height="150">
+<br /><br />
+<button type="button" id="confirm" class="btn btn-success" data-a="cc">Delete</button>
 <input type="button" value="Cancel" onclick='goBack()' class="btn btn-danger" />
 
 
@@ -15,10 +17,9 @@
     }
 
     $("#confirm").click(function () {
-        var input = '@ViewBag.MessageSlashed';
+        var input = '@ViewBag.PhotoNameSlashed';
 
-        $.get("/Home/RemovePhoto", { dir: input }, function (data) { });
-        //wait here if not updated
+        $.get("/Home/RemovePhoto", { photo: input }, function (data) { });
         document.location = 'Photos';
     });
 </script>

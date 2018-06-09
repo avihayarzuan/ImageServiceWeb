@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using ImageServiceWeb.Communication;
 using ImageServiceWeb.Infrastructure;
@@ -12,6 +13,7 @@ namespace ImageServiceWeb.Models
     {
 
         public string outputDir;
+        private Object obj;
         private List<PhotoInfo> photoList;
         public List<PhotoInfo> PhotoList
         {
@@ -19,13 +21,14 @@ namespace ImageServiceWeb.Models
             set { }
         }
 
-        public PhotoModel(ConfigModel configModel)
+        public PhotoModel(ConfigModel configModel,Object obj)
         {
             outputDir = configModel.Output;
             photoList = new List<PhotoInfo>();
+            this.obj = obj;
         }
 
-        public void getPhotos()
+        public void GetPhotos()
         {
             photoList.Clear();
             string[] extensions = { ".jpg", ".png", ".gif", ".bmp" };
@@ -35,7 +38,7 @@ namespace ImageServiceWeb.Models
             {
                 if (extensions.Contains(Path.GetExtension(path.ToLower())))
                 {
-                    string rPath = "\\Images\\" + path.Substring(outputDir.Length);
+                    string rPath = "\\Images" + path.Substring(outputDir.Length);
                     string name = Path.GetFileNameWithoutExtension(path);
                     string year = Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(path)));
                     string month = Path.GetFileName(Path.GetDirectoryName(path));
@@ -43,6 +46,22 @@ namespace ImageServiceWeb.Models
                 }
             }
 
+        }
+
+        public void DeletePhoto(string name)
+        {
+            string str = name.Replace("\\Images", "");
+            string pathThumb = outputDir + str;
+            File.Delete(pathThumb);
+            string pathOrigin = pathThumb.Replace("\\thumbnails", "");
+            File.Delete(pathOrigin);
+            try
+            {
+
+            Monitor.Pulse(obj);
+            }
+            catch {
+            }
         }
     }
 }

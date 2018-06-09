@@ -19,5 +19,8 @@ namespace ImageServiceWeb.Infrastructure
             this.year = year;
             this.month = month;
         }
+        public PhotoInfo()
+        {
+        }
     }
 }
