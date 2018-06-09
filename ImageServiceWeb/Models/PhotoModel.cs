@@ -11,7 +11,6 @@ namespace ImageServiceWeb.Models
     public class PhotoModel
     {
 
-        private Client client;
         public string outputDir;
         private List<PhotoInfo> photoList;
         public List<PhotoInfo> PhotoList
@@ -23,20 +22,24 @@ namespace ImageServiceWeb.Models
         public PhotoModel(ConfigModel configModel)
         {
             outputDir = configModel.Output;
-            getPhotos();
+            photoList = new List<PhotoInfo>();
         }
 
-        private void getPhotos()
+        public void getPhotos()
         {
-            string thumbnailDir = outputDir + "\thumbnails";
-            string[] fileList = Directory.GetFiles(thumbnailDir, "*" , SearchOption.AllDirectories);
-            foreach(string path in fileList)
+            photoList.Clear();
+            string[] extensions = { ".jpg", ".png", ".gif", ".bmp" };
+            string thumbnailDir = outputDir + "\\thumbnails";
+            string[] fileList = Directory.GetFiles(thumbnailDir, "*.*", SearchOption.AllDirectories);
+            foreach (string path in fileList)
             {
-                string photoPath = path;
-                string name = Path.GetFileNameWithoutExtension(path);
-                string year = Path.GetFileName(Path.GetDirectoryName(path));
-                string month = Path.GetFileName(path);
-                PhotoList.Add(new PhotoInfo(path, name, year, month));
+                if (extensions.Contains(Path.GetExtension(path.ToLower())))
+                {
+                    string name = Path.GetFileNameWithoutExtension(path);
+                    string year = Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(path)));
+                    string month = Path.GetFileName(Path.GetDirectoryName(path));
+                    PhotoList.Add(new PhotoInfo(path, name, year, month));
+                }
             }
 
         }

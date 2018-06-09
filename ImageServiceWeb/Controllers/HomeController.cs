@@ -39,8 +39,8 @@ namespace ImageServiceWeb.Controllers
         public ActionResult Photos()
         {
             ViewBag.Message = "Your photos page.";
-
-            return View();
+            photoModel.getPhotos();
+            return View(photoModel);
         }
 
         public ActionResult Logs()

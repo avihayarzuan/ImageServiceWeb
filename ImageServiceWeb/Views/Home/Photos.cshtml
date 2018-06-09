@@ -1,16 +1,37 @@
-﻿@{
+﻿@model ImageServiceWeb.Models.PhotoModel
+
+@{
     ViewBag.Title = "Photos";
 }
 <h2>Photos</h2>
 
-<div class="row">
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src="..." class="img-r" alt="...">
-            <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p><a href="#" class="btn btn-primary" role="button">View</a> <a href="#" class="btn btn-danger" role="button">Delete</a></p>
-            </div>
+<head>
+    <style>
+        .circular-image {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+    <div class="container" id="tourpackages-carousel">
+
+        <div class="row">
+            @foreach (var photo in Model.PhotoList)
+            {
+                <div class="col-xs-18 col-sm-6 col-md-3">
+
+                    <div class="thumbnail">
+                        <img src="@Url.Content(photo.path)" alt="" class="circular-image" width="242" height="200">
+                        <div class="caption">
+                            <h4>@photo.name</h4>
+                            <p>@photo.month/@photo.year</p>
+                            <p>
+                                <a href="@Url.Action("PhotosViewer", new { fullUrl = photo.path })" id="btnView" class="btn btn-info btn-xs" role="button">View</a>
+                                <a href="@Url.Action("PhotosDelete", new { fullUrl = photo.path })" id="btnDelete" class="btn btn-danger btn-xs" role="button">Delete</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-</div>
