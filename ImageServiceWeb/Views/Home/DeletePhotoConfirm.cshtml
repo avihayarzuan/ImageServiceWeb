@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "DeletePhotoConfirm";
+}
+
+
+<h2>DeletePhotoConfirm</h2>
+<h4>Are you sure you want to delete <strong>@ViewBag.MessageOrigin </strong> Photo? </h4>
+<button type="button" id="confirm" class="btn btn-success" data-a="cc">Yes</button>
+<input type="button" value="Cancel" onclick='goBack()' class="btn btn-danger" />
+
+
+<script>
+    function goBack() {
+        document.location='Photos'
+    }
+
+    $("#confirm").click(function () {
+        var input = '@ViewBag.MessageSlashed';
+
+        $.get("/Home/RemovePhoto", { dir: input }, function (data) { });
+        //wait here if not updated
+        document.location = 'Photos';
+    });
+</script>

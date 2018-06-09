@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.ServiceProcess;
 using ImageServiceWeb.Models;
+using ImageServiceWeb.Infrastructure;
 
 namespace ImageServiceWeb.Controllers
 {
@@ -67,5 +68,22 @@ namespace ImageServiceWeb.Controllers
             configModel.RemoveHandler(dir);
             return View(configModel);
         }
+
+        public ActionResult RemovePhoto(PhotoInfo photo)
+        {
+            configModel.RemoveHandler("asd");
+            return View(configModel);
+        }
+
+        public ActionResult DeletePhotoConfirm(PhotoInfo photo)
+        {
+            //if (dir != null)
+            //{
+            //    ViewBag.MessageOrigin = dir;
+            //    ViewBag.MessageSlashed = dir.Replace("\\", "\\\\");
+            //}
+            return View();
+        }
+
     }
 }

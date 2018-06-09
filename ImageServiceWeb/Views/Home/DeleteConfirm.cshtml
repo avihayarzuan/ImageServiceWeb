@@ -6,12 +6,17 @@
 <h2>DeleteConfirm</h2>
 <h4>Are you sure you want to delete <strong>@ViewBag.MessageOrigin </strong> Directory? </h4>
 <button type="button" id="confirm" class="btn btn-success" data-a="cc">Yes</button>
-<input type="button" value="Cancel" onclick='goBack()' class="btn btn-danger"/>
+<input type="button" value="Cancel" onclick='goBack()' class="btn btn-danger" />
+
+@*<button type="button" class="btn btn-success">@Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })</button>*@
+<br>
+
+@*@Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })*@
 
 
 <script>
     function goBack() {
-        document.location='Config'
+        window.history.back();
     }
 
     $("#confirm").click(function () {

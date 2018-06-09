@@ -43,8 +43,5 @@ namespace ImageServiceWeb.Models
             }
 
         }
-
-
-
     }
 }
