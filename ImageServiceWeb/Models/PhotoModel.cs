@@ -35,10 +35,11 @@ namespace ImageServiceWeb.Models
             {
                 if (extensions.Contains(Path.GetExtension(path.ToLower())))
                 {
+                    string rPath = "\\Images\\" + path.Substring(outputDir.Length);
                     string name = Path.GetFileNameWithoutExtension(path);
                     string year = Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(path)));
                     string month = Path.GetFileName(Path.GetDirectoryName(path));
-                    PhotoList.Add(new PhotoInfo(path, name, year, month));
+                    PhotoList.Add(new PhotoInfo(rPath, name, year, month));
                 }
             }
 

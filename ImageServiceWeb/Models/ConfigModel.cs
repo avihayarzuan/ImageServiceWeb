@@ -9,15 +9,18 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.Threading;
 
 namespace ImageServiceWeb.Models
 {
     public class ConfigModel
     {
         private Client client;
+        private Object obj;
 
-        public ConfigModel()
+        public ConfigModel(Object obj)
         {
+            this.obj = obj;
             this.client = Client.Instance;
             this.m_handlers = new ObservableCollection<string>();
             this.client.SettingsConfigRecieved += SettingsConfigRecieved;
@@ -64,8 +67,8 @@ namespace ImageServiceWeb.Models
         /// <param name="e">The handler path to be removed</param>
         public void HandlerRemoveRecived(object sender, MessageEventArgs e)
         {
-            JObject msg = JObject.Parse(e.Message);
-            string path = msg["Directory"].ToString();
+            // Notifying we can return to view since handler has been deleted
+            Monitor.Pulse(obj);
             // Checking if the path is indeed on the list and removing it
             //if (this.Handlers.Contains(path))
             //{
