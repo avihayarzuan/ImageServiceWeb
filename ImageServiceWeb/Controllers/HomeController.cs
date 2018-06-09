@@ -5,16 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using System.ServiceProcess;
 using ImageServiceWeb.Models;
+using System.Threading;
 
 namespace ImageServiceWeb.Controllers
 {
 
     public class HomeController : Controller
     {
-        static ConfigModel configModel = new ConfigModel();
+        static Object obj = new object();
+        static ConfigModel configModel = new ConfigModel(obj);
         static LogModel logModel = new LogModel();
         static PhotoModel photoModel = new PhotoModel(configModel);
         static StudentsModel studentsModel = new StudentsModel();
+
         bool serviceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
 
         public ActionResult Index()
@@ -65,6 +68,7 @@ namespace ImageServiceWeb.Controllers
         public ActionResult Remove(string dir)
         {
             configModel.RemoveHandler(dir);
+            Monitor.Wait(obj);
             return View(configModel);
         }
     }
