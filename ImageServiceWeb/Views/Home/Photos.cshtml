@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Photos";
 }
-<h2>Photos</h2>
+<h1>Photos</h1>
 
 <head>
     <style>
@@ -20,17 +20,19 @@
         {
             <div class="col-xs-18 col-sm-6 col-md-3">
 
-                <div class="thumbnail">
-                    <img src="@photo.path" alt="" class="circular-image" width="200" height="150">
-                    <div class="caption">
-                        <h4>@photo.name</h4>
-                        <p>@photo.year/@photo.month</p>
+                <div class="img-thumbnail text-center">
+                    <img src="@photo.path" alt="" class="circular-image" width="204" height="153">
+                    <div class="caption text-center">
+                        <p><b>@photo.name</b></p>
+                        <p>@photo.month/@photo.year</p>
                         <p>
-                            <a href="@Url.Action("PhotosViewer", new { path = photo.path, year=photo.year, month = photo.month, name= photo.name})" id="btnView" class="btn btn-info btn-xs" role="button">View</a>
-                            <a href="@Url.Action("DeletePhotoConfirm", new { photo = photo.path })" id="btnDelete" class="btn btn-danger btn-xs" role="button">Delete</a>
+                            <a href="@Url.Action("PhotosViewer", new { path = photo.path, year=photo.year, month = photo.month, name= photo.name})" id="btnView" class="btn btn-info" role="button"><b>View</b></a>
+                            <a href="@Url.Action("DeletePhotoConfirm", new { photo = photo.path })" id="btnDelete" class="btn btn-danger" role="button"><b>Delete</b></a>
                         </p>
                     </div>
                 </div>
+                <br >
+                <br>
             </div>
         }
     </div>

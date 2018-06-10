@@ -7,6 +7,7 @@ using System.ServiceProcess;
 using ImageServiceWeb.Models;
 using System.Threading;
 using ImageServiceWeb.Infrastructure;
+using System.IO;
 
 namespace ImageServiceWeb.Controllers
 {
@@ -84,6 +85,7 @@ namespace ImageServiceWeb.Controllers
         public ActionResult DeletePhotoConfirm(string photo)
         {
             ViewBag.PhotoNameOrigin = photo;
+            ViewBag.PhotoName = Path.GetFileNameWithoutExtension(photo);
             ViewBag.PhotoNameSlashed = photo.Replace("\\", "\\\\");
 
             return View();

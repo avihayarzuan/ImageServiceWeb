@@ -3,21 +3,21 @@
     ViewBag.Title = "PhotosViewer";
 }
 
-<h2>PhotosViewer</h2>
+<h2>@ViewBag.name</h2>
 
 <table id="t01">
     <tr>
-        <td><strong> Name: </strong></td>
-        <td>@ViewBag.name</td>
-    </tr>
-    <tr>
-        <td><strong> Month Taken: </strong></td>
-        <td>@ViewBag.year/@ViewBag.month</td>
+        <td><strong> Date:</strong></td>
+        <td>@ViewBag.month/@ViewBag.year</td>
     </tr>
 </table>
+<br>
+<br>
 <a href="@Url.Action("DeletePhotoConfirm", new { photo = @ViewBag.path })" id="btnDelete" class="btn btn-danger" role="button">Delete</a>
-<input type="button" value="return" onclick='goBack()' class="btn btn-success" />
-<img src="@ViewBag.pathOrigin" alt="">
+<input type="button" value="Go Back" onclick='goBack()' class="btn btn" />
+<br>
+<br>
+<img src="@ViewBag.pathOrigin" alt="" class="text-center">
 
 
 <script>

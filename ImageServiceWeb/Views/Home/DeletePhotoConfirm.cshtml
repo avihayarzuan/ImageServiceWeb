@@ -3,12 +3,12 @@
 }
 
 
-<h2>DeletePhotoConfirm</h2>
-<h4>Are you sure you want to delete <strong>@ViewBag.PhotoNameOrigin </strong> photo? </h4>
-<img src="@ViewBag.PhotoNameOrigin" alt="" class="circular-image" width="200" height="150">
+<h2>Delete @ViewBag.PhotoName ?</h2>
+<h4>Are you sure you want to delete <strong>@ViewBag.PhotoNameOrigin </strong> ? </h4>
+<img src="@ViewBag.PhotoNameOrigin" alt="" class="img-rounded" width="204" height="153">
 <br /><br />
-<button type="button" id="confirm" class="btn btn-success" data-a="cc">Delete</button>
-<input type="button" value="Cancel" onclick='goBack()' class="btn btn-danger" />
+<button type="button" id="confirm" class="btn btn-danger" data-a="cc">Delete</button>
+<input type="button" value="Cancel" onclick='goBack()' class="btn btn-info" />
 
 
 <script>

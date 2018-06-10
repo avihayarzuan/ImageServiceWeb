@@ -12,7 +12,7 @@
     }
 </style>
 
-<h2>Setting</h2>
+<h2>Settings</h2>
 @if (!ViewBag.ServiceRunning)
 {
     <h3>Service Status:</h3>
@@ -21,9 +21,8 @@
 }
 else
 {
-
-
-<table id="t01">
+    
+<table id="t01" class="table">
     <tr>
         <td><strong> Output Directory: </strong></td>
         <td>@Html.DisplayFor(model => model.Output)</td>
@@ -41,6 +40,7 @@ else
         <td>@Html.DisplayFor(model => model.ThumbnailSize)</td>
     </tr>
 </table>
+
 <br>
 <br>
 
