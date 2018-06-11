@@ -11,7 +11,6 @@ using System.IO;
 
 namespace ImageServiceWeb.Controllers
 {
-
     public class HomeController : Controller
     {
         static Object obj = new object();
@@ -22,6 +21,10 @@ namespace ImageServiceWeb.Controllers
 
         bool serviceRunning = (new ServiceController("ImageService").Status == ServiceControllerStatus.Running);
 
+        /// <summary>
+        /// Index the main view opened by the app
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Index()
         {
             ViewBag.ServiceRunning = serviceRunning;
@@ -33,6 +36,10 @@ namespace ImageServiceWeb.Controllers
             return View(studentsModel);
         }
 
+        /// <summary>
+        /// Configuration View
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Config()
         {
             ViewBag.ServiceRunning = serviceRunning;
@@ -41,6 +48,10 @@ namespace ImageServiceWeb.Controllers
             return View(configModel);
         }
 
+        /// <summary>
+        /// Photose View
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Photos()
         {
             ViewBag.Message = "Your photos page.";
@@ -48,6 +59,10 @@ namespace ImageServiceWeb.Controllers
             return View(photoModel);
         }
 
+        /// <summary>
+        /// Logs View
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logs()
         {
             ViewBag.ServiceRunning = serviceRunning;
@@ -57,6 +72,11 @@ namespace ImageServiceWeb.Controllers
             return View(logModel);
         }
 
+        /// <summary>
+        /// Confirmation view of deletion directory
+        /// </summary>
+        /// <param name="dir">The directory path</param>
+        /// <returns></returns>
         public ActionResult DeleteConfirm(string dir)
         {
             if (dir != null)
@@ -67,6 +87,11 @@ namespace ImageServiceWeb.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Removes the specified Directory handler.
+        /// </summary>
+        /// <param name="dir">The dir.</param>
+        /// <returns></returns>
         public ActionResult Remove(string dir)
         {
             configModel.RemoveHandler(dir);
@@ -74,6 +99,11 @@ namespace ImageServiceWeb.Controllers
             return View(configModel);
         }
 
+        /// <summary>
+        /// Removes the photo.
+        /// </summary>
+        /// <param name="photo">The photo path</param>
+        /// <returns></returns>
         public ActionResult RemovePhoto(string photo)
         {
             photoModel.DeletePhoto(photo);
@@ -82,6 +112,11 @@ namespace ImageServiceWeb.Controllers
             return View(photoModel);
         }
 
+        /// <summary>
+        /// Confirm window to delete specified photo
+        /// </summary>
+        /// <param name="photo">The photo path</param>
+        /// <returns></returns>
         public ActionResult DeletePhotoConfirm(string photo)
         {
             ViewBag.PhotoNameOrigin = photo;
@@ -91,6 +126,14 @@ namespace ImageServiceWeb.Controllers
             return View();
         }
 
+        /// <summary>
+        /// View specified photo
+        /// </summary>
+        /// <param name="path">The path of the photo</param>
+        /// <param name="year">The year of the photo</param>
+        /// <param name="month">The month of the photo</param>
+        /// <param name="name">The name of the photo</param>
+        /// <returns></returns>
         public ActionResult PhotosViewer(string path, string year, string month, string name)
         {
             ViewBag.path = path;
