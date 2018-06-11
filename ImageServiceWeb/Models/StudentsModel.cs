@@ -16,6 +16,9 @@ namespace ImageServiceWeb.Models
             set { }
         }
 
+        /// <summary>
+        /// Read our students infromation from the app_data
+        /// </summary>
         public void getStudents()
         {
             studentList.Clear();

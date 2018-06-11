@@ -28,9 +28,13 @@ namespace ImageServiceWeb.Models
             this.GetConfig();
         }
 
+        /// <summary>
+        /// Count the number of photos in the output directory
+        /// </summary>
         public int GetNumPhotos()
         {
             int fileCount = Directory.GetFiles(Output, "*.*", SearchOption.AllDirectories).Length;
+            // Not counting the thumbnails so dividing by 2...
             return (fileCount/2);
         }
 
@@ -41,6 +45,7 @@ namespace ImageServiceWeb.Models
         /// <param name="msg"> The message recived from server</param>
         public void SettingsConfigRecieved(object sender, MessageEventArgs msg)
         {
+            // Clearing our list each refresh
             Handlers.Clear();
             // Parsing our message
             string message = msg.Message;
@@ -69,12 +74,6 @@ namespace ImageServiceWeb.Models
         {
             // Notifying we can return to view since handler has been deleted
             Monitor.Pulse(obj);
-            // Checking if the path is indeed on the list and removing it
-            //if (this.Handlers.Contains(path))
-            //{
-            //    Handlers.Remove(path);
-            //}
-
         }
 
         /// <summary>

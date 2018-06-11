@@ -5,6 +5,7 @@ using System.Web;
 
 namespace ImageServiceWeb.Infrastructure
 {
+    // Simple class for holding our students information
     public class StudentInfo
     {
         public string firstName;

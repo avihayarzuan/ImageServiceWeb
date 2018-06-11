@@ -58,10 +58,10 @@ else
         {
             if (!item.Equals(""))
             {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item)</td>
-                    <td>@Html.ActionLink("Delete", "DeleteConfirm", "Home", new { dir = item }, null)</td>
-                </tr>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item)</td>
+            <td>@Html.ActionLink("Delete", "DeleteConfirm", "Home", new { dir = item }, null)</td>
+        </tr>
 
             }
         }
