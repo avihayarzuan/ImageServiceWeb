@@ -61,6 +61,10 @@ namespace ImageServiceWeb.Models
 
         }
 
+        /// <summary>
+        /// Deleting a photo given its path
+        /// </summary>
+        /// <param name="name">the photos path</param>
         public void DeletePhoto(string name)
         {
             string str = name.Replace("\\Images", "");
@@ -70,7 +74,7 @@ namespace ImageServiceWeb.Models
             File.Delete(pathOrigin);
             try
             {
-
+                // Announcing the photo has been deleted
             Monitor.Pulse(obj);
             }
             catch {

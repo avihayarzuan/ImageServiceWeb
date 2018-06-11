@@ -95,6 +95,7 @@ namespace ImageServiceWeb.Controllers
         public ActionResult Remove(string dir)
         {
             configModel.RemoveHandler(dir);
+            // Waiting to a response frome server
             Monitor.Wait(obj);
             return View(configModel);
         }
@@ -107,6 +108,7 @@ namespace ImageServiceWeb.Controllers
         public ActionResult RemovePhoto(string photo)
         {
             photoModel.DeletePhoto(photo);
+            // Waiting untill the photo is deleted
             Monitor.Wait(obj);
             photoModel.GetPhotos();
             return View(photoModel);
